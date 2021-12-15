@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="master">
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="Punto de venta con Spring Boot. Control de inventario y ventas ">
+<meta name="author" content="Parzibyte">
+<title>Sistema de ventas Spring Boot</title>
+<!-- Cargar el CSS de Boostrap-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+<body>
+	<main layout:fragment="contenido">
+		<div class="col-12">
+			<h2>Subastas Disponibles</h2>
+			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+			</div>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Cliente / Entrega Productos</th>
+							<th>Productor / Retiro Productos</th>							
+							<th>Productos a Entregar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="postulacion : ${pedidoProductor}"
+							th:if="${postulacion.pedido.estadoPedido.id_estado} == 4 and ${postulacion.estado} == 'Adjudicado'">
+							<td><a th:href="@{/postularSubasta/{id}(id=${postulacion.id})}"
+							class="btn btn-success">Postular</a></td>							
+							<td th:text="${postulacion.pedido.cliente.nombre_cliente} +' / '+ ${postulacion.pedido.cliente.direccion_cliente}"></td>
+							<td th:text="${postulacion.productor.nombre_productor} +' / '+${postulacion.productor.direccion_productor}"></td>														
+							<td>
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Nombre</th>
+											<th>Cantidad Solicitada (*100 Kg.)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="producto : ${postulacion.pedido.productos}">
+											<td th:text="${producto.nombre}"></td>
+											<td th:text="${producto.cantidad}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a href="/" class="btn btn-danger">Cancelar</a>
+		</div>
+	</main>
+</body>
+</html>

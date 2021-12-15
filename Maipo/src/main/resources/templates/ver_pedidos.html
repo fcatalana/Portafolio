@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="master">
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="Punto de venta con Spring Boot. Control de inventario y ventas ">
+<meta name="author" content="Parzibyte">
+<title>Pedidos Solicitados</title>
+<!-- Cargar el CSS de Boostrap-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+<body>
+	<main layout:fragment="contenido">
+		<div class="col-12">			
+			<h2>Pedidos recibidos</h2>
+			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+			</div>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Código Solicitud</th>
+							<th>Cliente</th>
+							<th>Fecha Solicitud</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pedido : ${pedidos}"
+							th:if="*{pedido.estadoPedido.id_estado} == '1'">
+							<td><a th:href="@{/verPedido/{id}(id=${pedido.id})}"
+								class="btn btn-success">Ver</a></td>
+							<td th:text="${pedido.id}"></td>
+							<td th:text="${pedido.cliente.nombre_cliente}"></td>
+							<td th:text="${pedido.fechaYHora}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a href="/" class="btn btn-danger">Cancelar</a>
+		</div>
+	</main>
+</body>
+</html>

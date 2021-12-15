@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+
+<!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
+<link rel="icon" type="image/x-icon"
+	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+
+<style>
+#titulo {
+	color: white;
+}
+</style>
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h3 class="text-center">Informe Venta</h3>
+		<hr>
+		<br>
+		<div class="table-responsive">
+			<h5>Datos Cliente</h5>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>RUT</th>
+						<th>Nombre</th>
+						<th>Dirección</th>
+						<th>Teléfono</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="subasta : ${subastaTransporte}"
+						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
+						<td
+							th:text="${subasta.pedidoProductor.pedido.cliente.rut_cliente}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.pedido.cliente.nombre_cliente}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.pedido.cliente.direccion_cliente}+', '+${subasta.pedidoProductor.pedido.cliente.pais.nombre_pais}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.pedido.cliente.telefono_cliente}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.pedido.cliente.email_cliente}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr>
+		<div class="table-responsive">
+			<h5>Datos Productor</h5>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>RUT</th>
+						<th>Nombre</th>
+						<th>Dirección</th>
+						<th>Teléfono</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="subasta : ${subastaTransporte}"
+						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
+						<td th:text="${subasta.pedidoProductor.productor.rut}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.productor.nombre_productor}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.productor.direccion_productor}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.productor.telefono_productor}"></td>
+						<td th:text="${subasta.pedidoProductor.productor.email_productor}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr>
+		<div class="table-responsive">
+			<h5>Datos Traslado</h5>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Nombre Transportista</th>
+						<th>Productos Transportados</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="subasta : ${subastaTransporte}"
+						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
+						<td th:text="${subasta.transporte.nombre_transporte}"></td>
+						<td>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Cantidad (*100 Kg.)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr
+										th:each="producto : ${subasta.pedidoProductor.pedido.productos}">
+										<td th:text="${producto.nombre}"></td>
+										<td th:text="${producto.cantidad}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr>
+		<div class="table-responsive col-md-4">
+			<h5>Costos Asociados</h5>
+			<table class="table table-bordered">
+				<thead>
+					<tr th:each="subasta : ${subastaTransporte}"
+						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
+						<th>Costo Total Productos</th>
+						<th><input id="totalProducto" name="totalProducto" th:value="${subasta.pedidoProductor.monto}" disabled></th>
+					</tr>
+					<tr th:each="subasta : ${subastaTransporte}"
+						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
+						<th>Costo Traslado</th>
+						<th><input id="totalTransporte" name="totalTransporte" th:value="${subasta.monto}" disabled></th>																	
+					</tr>
+					<tr>
+						<th>Total Neto</th>
+						<th><input id="totalNeto" name="totalNeto" disabled></th>
+					</tr>
+					<tr>
+						<th>% Comisión (10%)</th>
+						<th><input id="comision" name="comision" disabled></th>
+					</tr>
+					<tr>
+						<th>Total a Pagar</th>
+						<th><input id="totalPagar" name="totalPagar" disabled></th>
+					</tr>
+				</thead>								
+			</table>
+			<a href="/ventas" class="btn btn-danger">Volver</a>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"></script>
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</div>
+</body>
+<script>
+							
+		var totalP = $('#totalProducto').val();
+		var totalT = $('#totalTransporte').val();  		
+		
+		var suma; 
+		suma = parseFloat(totalP)+parseFloat(totalT);  
+		$('#totalNeto').val(suma);
+		
+		var comision;
+		var porcent = 0.10;
+		comision = parseFloat(suma)*parseFloat(porcent);  
+		$('#comision').val(comision);
+		
+		var pagar;
+		pagar = parseFloat(suma)+parseFloat(comision)
+		$('#totalPagar').val(pagar);
+
+</script>
+</html>

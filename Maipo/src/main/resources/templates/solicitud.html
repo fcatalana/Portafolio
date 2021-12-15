@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/style.css">
+
+<title>Pedido</title>
+</head>
+
+<body>
+	<header th:replace="layout/plantilla :: header"> </header>
+	<br>
+
+	<header>
+		<div class="container">
+
+			<form action="#" th:action="@{/addPedido}" th:object="${pedido}"
+				method="post" class="row">
+
+				<div class="form-group col-md-5"></div>
+
+				<h1 class="text-center">Pedido</h1>
+				<hr>
+
+				<input type="hidden" class="form-control" id="id_pedido"
+					name="id_pedido" th:value="0"> <input type="hidden"
+					class="form-control" id="nombre_pedido" name="nombre_pedido">
+
+				<div class="form-group col-md-3">
+					<input type="date" class="form-control" id="fecha_inicio_pedido"
+						name="fecha_inicio_pedido" readonly>
+				</div>
+
+				<input type="hidden" class="form-control" id="fecha_termino_pedido"
+					name="fecha_termino_pedido"> <br> <input type="hidden"
+					class="form-control" id="cliente" name="cliente" th:value="1">
+				<input type="hidden" class="form-control" id="estadoPedido"
+					name="estadoPedido" th:value="1">
+
+				<div>
+					<br> <input class="btn btn-primary" id="botonvalidar"
+						value="Generar Pedido" type="submit" /> <input
+						class="btn btn-success" id="botonvalidar"
+						value="Agregar Productos" onclick="validar();" type="button" />
+				</div>
+			</form>
+		</div>
+	</header>
+
+	<hr>
+	<br>
+	<br>
+	<div class="container">
+		<div id="productos" style="display: none">
+			<form action="#" th:action="@{/addDetallePedido}"
+				th:object="${detallePedido}" method="post" class="row">
+
+				<input type="hidden" class="form-control" id="id_d_pedido"
+					th:value="0" name="id_d_pedido">
+
+				<div class="form-group col-md-3">
+					<label for="producto">Producto</label> <select
+						th:field="*{producto}" class="form-select" id="producto">
+						<option th:each="Producto:${listProducto}"
+							th:value="${Producto.id_producto}"
+							th:text="${Producto.nombre_producto}" />
+					</select>
+				</div>
+
+				<div class="form-group col-md-3">
+					<label for="cantidad">cantidad</label> <input type="number"
+						class="form-control left-text" id="cantidad"
+						th:field="*{cantidad}" name="cantidad">
+				</div>
+
+				<input type="hidden" class="form-control" id="pedido" name="pedido">
+
+				<div>
+					<button class="btn btn-success ml-auto comprarButton" type="submit"
+						data-toggle="modal" data-target="#comprarModal">Agregar</button>
+				</div>
+			</form>
+
+			<hr>
+			<div class="container">
+				<h1 class="text-center">Detalle Pedido</h1>
+				<hr>
+
+				<h2 id="titulo" th:if="${listDetallePedido.isEmpty()}">Agregue
+					sus productos</h2>
+				<div th:if="${!listDetallePedido.isEmpty()}">
+					<table class="table table-striped table-dark">
+						<thead>
+							<tr>
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="DetallePedido:${listDetallePedido}">
+								<td th:text="${DetallePedido.producto.nombre_producto}">
+								<td th:text="${DetallePedido.cantidad}">
+								<td><a class="btn btn-danger"
+									th:href="@{/deleteDetallePedido/{id}(id=${DetallePedido.id_d_pedido})}">Eliminar</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<div style="display: none">
+		<table class="table table-striped table-dark" id="rwd-table-id">
+			<thead>
+				<tr>
+					<th>ID Pedido</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="Pedido:${listPedido}">
+					<td th:text="${Pedido.id_pedido}">
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<section class="shopping-cart">
+		<div class="modal fade" id="comprarModal" tabindex="-1"
+			aria-labelledby="comprarModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="comprarModalLabel">Solicitud
+							enviada correctamente</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Pronto recibirá noticias de su Pedido!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="js/javascript.js"></script>
+	<!-- SCRIPTS -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</body>
+
+<script>
+		var today = new Date().toISOString().split('T')[0];		
+		$("#fecha_inicio_pedido").val(today);
+		$("#fecha_termino_pedido").val(today);
+		var rutCliente="";
+        var fecha = "";
+        var idPedido = "";
+		rutCliente = $('#cliente').val();
+		fecha = $('#fecha_inicio_pedido').val();
+		idPedido = $('#id_pedido').val();
+		$('#nombre_pedido').val(rutCliente+'*'+fecha);
+						
+		var resume_table = document.getElementById("rwd-table-id");
+		
+		for (var i = 0, row; row = resume_table.rows[i]; i++) {
+			//alert(cell[i].innerText);
+			for (var j = 0, col; col = row.cells[j]; j++) {
+		    	//alert(col[j].innerText);
+		    	var resume='${col.innerText}';
+			}
+		}
+		$('#pedido').val(resume);
+
+</script>
+
+</html>

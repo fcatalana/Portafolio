@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+
+<!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
+<link rel="icon" type="image/x-icon"
+	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+
+<style>
+#titulo {
+	color: white;
+}
+</style>
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+	<br>
+	<h3 class="text-center">Pedido a Entregar</h3>
+	<br>
+	<form action="#" th:action="@{/updPedidoEntregado}" th:object="${pedido}"
+		method="post" class="row">
+
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Cliente / Entrega Productos</th>
+						<th>Productor / Retiro Productos</th>
+						<th>Productos a Entregar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="subasta : ${subastaTransporte}"
+						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.pedidoProductor.estado} == 'Adjudicado' and ${subasta.estado} == 'Adjudicado'">
+						<td
+							th:text="${subasta.pedidoProductor.pedido.cliente.nombre_cliente} +' / '+ ${subasta.pedidoProductor.pedido.cliente.direccion_cliente}"></td>
+						<td
+							th:text="${subasta.pedidoProductor.productor.nombre_productor} +' / '+${subasta.pedidoProductor.productor.direccion_productor}"></td>
+						<td>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Cantidad Solicitada (*100 Kg.)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr
+										th:each="producto : ${subasta.pedidoProductor.pedido.productos}">
+										<td th:text="${producto.nombre}"></td>
+										<td th:text="${producto.cantidad}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<input type="hidden" class="form-control" id="id" th:field="*{id}"
+			name="id"> <input type="hidden" class="form-control"
+			id="fechaYHora" th:field="*{fechaYHora}" name="fechaYHora"> <input
+			type="hidden" class="form-control" id="estadoPedido" th:value="7"
+			name="estadoPedido"> <input type="hidden"
+			class="form-control" id="cliente" th:value="*{cliente.id_cliente}"
+			name="cliente">
+			
+			<input type="hidden" id="from" name="from"> <input
+					type="hidden" id="to" name="to"> <input type="hidden"
+					id="subject" name="subject"> <input type="hidden" id="body"
+					name="body">
+			
+		<div>
+			<br>
+			<button type="submit" class="btn btn-primary">Entregar</button>
+			<a href="/entregar" class="btn btn-danger">Cancelar</a>
+		</div>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</div>		
+</body>
+
+<script>
+		
+		var resume_table = document.getElementById("rwd-table-id");
+		
+		for (var i = 0, row; row = resume_table.rows[i]; i++) {
+  			//alert(cell[i].innerText);
+  			for (var j = 0, col; col = row.cells[j]; j++) {
+    			//alert(col[j].innerText);
+    			var resume=(`${col.innerText}`);
+  			}
+		}
+		
+		$('#transporte').val(resume);
+		
+		var resume_table1 = document.getElementById("rwd1-table1-id");
+		
+		for (var i = 0, row; row = resume_table1.rows[i]; i++) {
+  			//alert(cell[i].innerText);
+  			for (var j = 0, col; col = row.cells[j]; j++) {
+    			//alert(col[j].innerText);
+    			var resume1=(`${col.innerText}`);
+  			}
+		}
+		
+		$('#usuario').val(resume1);
+		
+
+</script>
+</html>

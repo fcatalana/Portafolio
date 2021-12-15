@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="master">
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="Punto de venta con Spring Boot. Control de inventario y ventas ">
+<meta name="author" content="Parzibyte">
+<title>Sistema de ventas Spring Boot</title>
+<!-- Cargar el CSS de Boostrap-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+<body>
+	<main layout:fragment="contenido">
+		<div class="col-12">
+			<h2>Pedidos Recepcionados</h2>
+			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+			</div>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Productor</th>
+							<th>Transportista</th>														
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="subasta : ${subastaTransporte}"
+							th:if="${subasta.pedidoProductor.pedido.estadoPedido.id_estado} == 7  and ${subasta.pedidoProductor.estado} == 'Adjudicado' and ${subasta.estado} == 'Adjudicado'">
+							<td><a th:href="@{/recepcionarPedido/{id}(id=${subasta.pedidoProductor.pedido.id})}"
+							class="btn btn-success">Ver</a></td>							
+							<td th:text="${subasta.pedidoProductor.productor.nombre_productor}"></td>
+							<td th:text="${subasta.transporte.nombre_transporte}"></td>																					
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a href="/" class="btn btn-danger">Cancelar</a>
+		</div>
+	</main>
+</body>
+</html>

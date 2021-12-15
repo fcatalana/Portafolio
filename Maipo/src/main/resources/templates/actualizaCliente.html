@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+
+<!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
+<link rel="icon" type="image/x-icon"
+	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+
+<style>
+#titulo, label {
+	color: white;
+}
+</style>
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body background="../img/background.jpg">
+	<div class="container">
+		<br>
+		<h2 id="titulo">Actualizar Cliente</h2>
+		<form action="#" th:action="@{/updCliente}" th:object="${cliente}"
+			method="post" class="row">
+
+			<input type="hidden" class="form-control" id="id_cliente"
+				th:field="*{id_cliente}" name="id_cliente" required>
+
+
+			<div class="form-group col-md-3">
+				<label for="rut_cliente">RUT</label> <input type="text"
+					class="form-control" id="rut_cliente" th:field="*{rut_cliente}"
+					name="rut_cliente" required>
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="nombre_cliente">Nombre</label> <input type="text"
+					class="form-control" id="nombre_cliente"
+					th:field="*{nombre_cliente}" name="nombre_cliente" required>
+			</div>
+
+			
+			<div class="form-group col-md-4">
+				<label for="direccion_cliente">Dirección</label> <input type="text"
+					class="form-control" id="direccion_cliente"
+					th:field="*{direccion_cliente}" name="direccion_cliente" required>
+			</div>
+
+			<div class="form-group col-md-3">
+				<label for="telefono_cliente">Teléfono</label> <input type="text"
+					class="form-control" id="telefono_cliente"
+					th:field="*{telefono_cliente}" name="telefono_cliente" required>
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="email_cliente">Email</label> <input type="email"
+					class="form-control" id="email_cliente" th:field="*{email_cliente}"
+					name="email_cliente" required>
+			</div>
+
+			<div class="form-group col-md-3">
+				<label for="creacion_cliente">Fecha Creación</label> <input
+					type="date" class="form-control" id="creacion_cliente"
+					th:field="*{creacion_cliente}" name="creacion_cliente" required>
+			</div>
+
+			
+
+			<div class="form-group col-md-2">
+				<label for="tipocliente">Tipo Cliente</label> <select
+					th:field="*{tipocliente}" class="form-select" id="tipocliente"
+					required>
+					<option th:each="tipoCliente:${listTipoCliente}"
+						th:value="${tipoCliente.id_t_cli}"
+						th:text="${tipoCliente.tipo_cli}" />
+				</select>
+				<!--  
+				<input type="text" class="form-control" id="tipo_cliente_id_t_cli"
+					th:field="*{tipo_cliente_id_t_cli}"
+					name="tipo_cliente_id_t_cli" required>  -->
+			</div>
+			
+			<div class="form-group col-md-3">
+				<label for="estado">Estado</label> <input
+					type="text" class="form-control" id="estado"
+					th:field="*{estado}" name="estado" required>
+			</div>
+
+			<div class="form-group col-md-2">
+				<label for="contrato">Contrato</label> <select
+					th:field="*{contrato}" class="form-select" id="contrato" required>
+					<option th:each="contrato:${listContrato}"
+						th:value="${contrato.id_contrato}"
+						th:text="${contrato.descripcion_contra}" />
+				</select>
+				<!-- 
+				<input type="text" class="form-control" id="contrato_id_contrato"
+					th:field="*{contrato_id_contrato}" name="contrato_id_contrato"
+					required>  -->
+			</div>
+
+			<div class="form-group col-md-2">
+				<label for="pais">País</label> <select th:field="*{pais}"
+					class="form-select" id="pais" required>
+					<option th:each="pais:${listPais}" th:value="${pais.id_pais}"
+						th:text="${pais.nombre_pais}" />
+				</select>
+				<!-- 
+				<input type="text" class="form-control" id="pais_id_pais" th:field="*{pais_id_pais}"
+					name="pais_id_pais" required> -->
+			</div>
+			
+			<div class="form-group col-md-2">
+				<label for="usuario">Usuario</label> <select th:field="*{usuario}"
+					class="form-select" id="usuario" required>
+					<option th:each="Usuario:${listUsuario}" 
+						th:value="${Usuario.id_usuario}"
+						th:text="${Usuario.username}" />
+				</select>
+				<!-- 
+				<input type="text" class="form-control" id="pais_id_pais" th:field="*{pais_id_pais}"
+					name="pais_id_pais" required> -->
+			</div>
+			
+			<div>
+				<br>
+				<button type="submit" class="btn btn-primary">Modificar</button>
+				<a href="/listaCliente" class="btn btn-danger">Cancelar</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

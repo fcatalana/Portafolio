@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+
+<!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
+<link rel="icon" type="image/x-icon"
+	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+
+<style>
+#titulo, label {
+	color: white;
+}
+</style>
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>Postulaciones Subasta</h2>		
+		<form action="#" th:action="@{/updAdjudicaSubasta}" th:object="${pedido}"
+			method="post" class="row">
+			
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Transportista</th>
+							<th>Costo Traslado</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="subasta : ${subastaTransporte}"
+							th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Postulado'">
+							<td th:text="${subasta.transporte.nombre_transporte}"></td>	
+							<td th:text="${subasta.monto}"></td>						
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<input type="hidden" class="form-control" id="id" th:field="*{id}"
+				name="id"> <input type="hidden" class="form-control"
+				id="fechaYHora" th:field="*{fechaYHora}" name="fechaYHora">
+			<input type="hidden" class="form-control" id="estadoPedido"
+				th:value="5" name="estadoPedido"> <input type="hidden"
+				class="form-control" id="cliente" th:value="*{cliente.id_cliente}"
+				name="cliente">
+			
+			<input type="hidden" id="from" name="from"> <input
+					type="hidden" id="to" name="to"> <input type="hidden"
+					id="subject" name="subject"> <input type="hidden" id="body"
+					name="body">
+			
+			<div>
+				<br>				
+				<button type="submit" class="btn btn-primary">Adjudicar</button>
+				<a href="/adjudicacionTransporte" class="btn btn-danger">Cancelar</a>
+			</div>	
+		</form>	
+	</div>
+</body>
+</html>
