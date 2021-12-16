@@ -15,37 +15,53 @@
 <link th:href="@{/css/fa.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
 
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
 	<main layout:fragment="contenido">
 		<div class="col-12">
-			<h2>Ventas realizadas</h2>
-			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
-			</div>						
-			<div class="table-responsive">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Cliente</th>
-							<th>Productor</th>
-							<th>Transportista</th>														
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="subasta : ${subastaTransporte}"
-							th:if="${subasta.pedidoProductor.pedido.estadoPedido.id_estado} == 8 and ${subasta.estado} == 'Adjudicado'">
-							<td><a th:href="@{/ventaPedido/{id}(id=${subasta.pedidoProductor.pedido.id})}"
-							class="btn btn-success">Ver</a></td>							
-							<td th:text="${subasta.pedidoProductor.pedido.cliente.nombre_cliente}"></td>
-							<td th:text="${subasta.pedidoProductor.productor.nombre_productor}"></td>
-							<td th:text="${subasta.transporte.nombre_transporte}"></td>																					
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<a href="/" class="btn btn-danger">Cancelar</a>
-		</div>
-	</main>
+			<main layout:fragment="contenido">
+				<div class="col-12">
+					<br>
+					<h1 class="text-center">
+						<img src="../img/logo_sin_palabras.png" width="80" class="my-4">
+					</h1>
+					<h1 class="text-center">Ventas realizadas</h1>
+					<br> <br>
+					<div
+						th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+						th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+					</div>
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="p-3 mb-2 bg-primary text-white"></th>
+									<th class="p-3 mb-2 bg-primary text-white">Cliente&nbsp;<i
+										class="fa fa-user"></i></th>
+									<th class="p-3 mb-2 bg-primary text-white">Productor&nbsp;<i
+										class="fa fa-male"></i></th>
+									<th class="p-3 mb-2 bg-primary text-white">Transportista&nbsp;<i
+										class="fa fa-truck"></i></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:each="subasta : ${subastaTransporte}"
+									th:if="${subasta.pedidoProductor.pedido.estadoPedido.id_estado} == 8 and ${subasta.estado} == 'Adjudicado'">
+									<td><a
+										th:href="@{/ventaPedido/{id}(id=${subasta.pedidoProductor.pedido.id})}"
+										class="btn btn-success">Ver</a></td>
+									<td
+										th:text="${subasta.pedidoProductor.pedido.cliente.nombre_cliente}"></td>
+									<td
+										th:text="${subasta.pedidoProductor.productor.nombre_productor}"></td>
+									<td th:text="${subasta.transporte.nombre_transporte}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<a href="/" class="btn btn-danger">Cancelar&nbsp;<i
+						class="fa fa-times"></i></a>
+				</div>
+			</main>
 </body>
 </html>

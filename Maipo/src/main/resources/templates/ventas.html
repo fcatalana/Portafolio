@@ -3,40 +3,44 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>Informe de Venta</title>
 
 <!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
-<link rel="icon" type="image/x-icon"
-	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+<link rel="icon" type="image/x-icon" href="../img/logo_sin_palabras.png" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 
 <style>
 #titulo {
 	color: white;
 }
 </style>
-<link href="../static/css/bootstrap.css" rel="stylesheet"
-	th:href="@{/css/bootstrap.css}">
+
 </head>
 <body>
 	<div class="container">
-		<br>
-		<h3 class="text-center">Informe Venta</h3>
+		<h1 class="text-center">
+			<img src="../img/logo_sin_palabras.png" width="90" class="my-4">
+		</h1>
+		<h1 class="text-center ">Informe Venta</h1>
 		<hr>
 		<br>
 		<div class="table-responsive">
-			<h5>Datos Cliente</h5>
+			<h5 class="p-3 mb-2 bg-danger text-white">Datos Cliente</h5>
 			<table class="table table-bordered">
 				<thead>
-					<tr>
-						<th>RUT</th>
-						<th>Nombre</th>
-						<th>Dirección</th>
-						<th>Teléfono</th>
-						<th>Email</th>
+					<tr class="text-white  tr-titulo">
+						<th class="p-3 mb-2 bg-info ">RUT</th>
+						<th class="p-3 mb-2 bg-info ">Nombre</th>
+						<th class="p-3 mb-2 bg-info ">Dirección</th>
+						<th class="p-3 mb-2 bg-info ">Teléfono</th>
+						<th class="p-3 mb-2 bg-info ">Email</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="subasta : ${subastaTransporte}"
+					<tr class="p-3 mb-2 bg-light text-dark"
+						th:each="subasta : ${subastaTransporte}"
 						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
 						<td
 							th:text="${subasta.pedidoProductor.pedido.cliente.rut_cliente}"></td>
@@ -54,19 +58,20 @@
 		</div>
 		<hr>
 		<div class="table-responsive">
-			<h5>Datos Productor</h5>
+			<h5 class="p-2 mb-2 bg-danger text-white">Datos Productor</h5>
 			<table class="table table-bordered">
 				<thead>
-					<tr>
-						<th>RUT</th>
-						<th>Nombre</th>
-						<th>Dirección</th>
-						<th>Teléfono</th>
-						<th>Email</th>
+					<tr class="text-white tr-titulo">
+						<th class="p-2 mb-2 bg-info ">RUT</th>
+						<th class="p-2 mb-2 bg-info ">Nombre</th>
+						<th class="p-2 mb-2 bg-info ">Dirección</th>
+						<th class="p-2 mb-2 bg-info ">Teléfono</th>
+						<th class="p-2 mb-2 bg-info ">Email</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="subasta : ${subastaTransporte}"
+					<tr class="p-3 mb-2 bg-light text-dark"
+						th:each="subasta : ${subastaTransporte}"
 						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
 						<td th:text="${subasta.pedidoProductor.productor.rut}"></td>
 						<td
@@ -82,24 +87,28 @@
 		</div>
 		<hr>
 		<div class="table-responsive">
-			<h5>Datos Traslado</h5>
+			<h5 class="p-3 mb-2 bg-danger text-white">Datos Traslado</h5>
 			<table class="table table-bordered">
 				<thead>
-					<tr>
-						<th>Nombre Transportista</th>
-						<th>Productos Transportados</th>
+					<tr class="text-white  tr-titulo">
+						<th class="p-3 mb-2 bg-info">Nombre
+							Transportista</th>
+						<th class="p-3 mb-2 bg-info">Productos
+							Transportados</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="subasta : ${subastaTransporte}"
+					<tr class="p-1 mb-2 bg-light text-dark"
+						th:each="subasta : ${subastaTransporte}"
 						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
 						<td th:text="${subasta.transporte.nombre_transporte}"></td>
 						<td>
 							<table class="table table-bordered">
 								<thead>
-									<tr>
-										<th>Nombre</th>
-										<th>Cantidad (*100 Kg.)</th>
+									<tr class="text-white  tr-titulo">
+										<th class="p-1 mb-2 bg-success">Nombre</th>
+										<th class="p-1 mb-2 bg-success">Cantidad (*100
+											Kg.)</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -117,34 +126,48 @@
 		</div>
 		<hr>
 		<div class="table-responsive col-md-4">
-			<h5>Costos Asociados</h5>
+			<h5 class="p-3 mb-2 bg-danger text-white">Costos Asociados</h5>
 			<table class="table table-bordered">
 				<thead>
-					<tr th:each="subasta : ${subastaTransporte}"
+					<tr class="text-white  tr-titulo" th:each="subasta : ${subastaTransporte}"
 						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
-						<th>Costo Total Productos</th>
-						<th><input id="totalProducto" name="totalProducto" th:value="${subasta.pedidoProductor.monto}" disabled></th>
+						<th class="p-2 mb-2 bg-info">Costo Total Productos</th>
+						<th class="p-1 mb-2 bg-light"><input
+							class="p-1 mb-2 bg-light" id="totalProducto"
+							name="totalProducto" th:value="${subasta.pedidoProductor.monto}"
+							disabled></th>
 					</tr>
-					<tr th:each="subasta : ${subastaTransporte}"
+					<tr class="text-white  tr-titulo" th:each="subasta : ${subastaTransporte}"
 						th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Adjudicado'">
-						<th>Costo Traslado</th>
-						<th><input id="totalTransporte" name="totalTransporte" th:value="${subasta.monto}" disabled></th>																	
+						<th class="p-2 mb-2 bg-info">Costo Traslado</th>
+						<th class="p-1 mb-2 bg-light"><input
+							class="p-1 mb-2 bg-light" id="totalTransporte"
+							name="totalTransporte" th:value="${subasta.monto}" disabled></th>
 					</tr>
-					<tr>
-						<th>Total Neto</th>
-						<th><input id="totalNeto" name="totalNeto" disabled></th>
+					<tr class="text-white  tr-titulo">
+						<th class="p-2 mb-2 bg-info">Total Neto</th>
+						<th class="p-1 mb-2 bg-light"><input
+							class="p-1 mb-2 bg-light" id="totalNeto"
+							name="totalNeto" disabled></th>
 					</tr>
-					<tr>
-						<th>% Comisión (10%)</th>
-						<th><input id="comision" name="comision" disabled></th>
+					<tr class="text-white  tr-titulo">
+						<th class="p-2 mb-2 bg-info">% Comisión (10%)</th>
+						<th class="p-1 mb-2 bg-light"><input
+							class="p-1 mb-2 bg-light" id="comision" name="comision"
+							disabled></th>
 					</tr>
-					<tr>
-						<th>Total a Pagar</th>
-						<th><input id="totalPagar" name="totalPagar" disabled></th>
+					<tr class="text-white  tr-titulo">
+						<th class="p-2 mb-2 bg-warning">Total a Pagar</th>
+						<th class="p-1 mb-2 bg-light"><input
+							class="p-1 mb-2 bg-light" id="totalPagar"
+							name="totalPagar" disabled></th>
 					</tr>
-				</thead>								
+				</thead>
 			</table>
-			<a href="/ventas" class="btn btn-danger">Volver</a>
+			<a href="/ventas" class="btn btn-danger btn-botones">Volver&nbsp;<i
+				class="fa fa-reply"></i></a> 
+				<a id="btnImprimir" href="" class="btn btn-success btn-botones">Imprimir&nbsp;<i
+				class="fa fa-print"></i></a>
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -164,22 +187,38 @@
 	</div>
 </body>
 <script>
-							
-		var totalP = $('#totalProducto').val();
-		var totalT = $('#totalTransporte').val();  		
-		
-		var suma; 
-		suma = parseFloat(totalP)+parseFloat(totalT);  
-		$('#totalNeto').val(suma);
-		
-		var comision;
-		var porcent = 0.10;
-		comision = parseFloat(suma)*parseFloat(porcent);  
-		$('#comision').val(comision);
-		
-		var pagar;
-		pagar = parseFloat(suma)+parseFloat(comision)
-		$('#totalPagar').val(pagar);
+	var totalP = $('#totalProducto').val();
+	var totalT = $('#totalTransporte').val();
 
+	var suma;
+	suma = parseFloat(totalP) + parseFloat(totalT);
+	$('#totalNeto').val(suma);
+
+	var comision;
+	var porcent = 0.10;
+	comision = parseFloat(suma) * parseFloat(porcent);
+	$('#comision').val(comision);
+
+	var pagar;
+	pagar = parseFloat(suma) + parseFloat(comision)
+	$('#totalPagar').val(pagar);
+	
+	
+	jQuery(document).ready(function(){
+
+		jQuery('#btnImprimir').click(function(){
+			
+			jQuery('.tr-titulo').removeClass('text-white');
+			jQuery('.tr-titulo').addClass('text-black');
+			jQuery('.btn-botones').addClass('d-none');
+			window.print();
+			jQuery('.tr-titulo').removeClass('text-black');
+			jQuery('.tr-titulo').addClass('text-white');
+			jQuery('.btn-botones').removeClass('d-none');
+			
+			 
+			
+		});
+	});
 </script>
 </html>

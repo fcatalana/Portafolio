@@ -3,24 +3,29 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>Postulaciones Pedido</title>
 
 <!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
-<link rel="icon" type="image/x-icon"
-	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+<link rel="icon" type="image/x-icon" href="../img/logo_sin_palabras.png" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 
 <style>
 #titulo, label {
 	color: white;
 }
 </style>
-<link href="../static/css/bootstrap.css" rel="stylesheet"
-	th:href="@{/css/bootstrap.css}">
+
 </head>
-<body>
+<body class="p-5 mb-2 bg-dark text-white">
 	<div class="container">
-		<br>
-		<h2>Postulaciones Pedido</h2>		
+	<br>
+			<h1 class="text-center">
+				<img src="../img/logo_sin_palabras.png" width="80" class="my-4">
+			</h1>
+			<h1 class="text-center">Postulaciones Pedido</h1>
+			<br> 	
 		<form action="#" th:action="@{/updAdjudicacion}" th:object="${pedido}"
 			method="post" class="row">
 			
@@ -28,13 +33,18 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>Productor</th>
-							<th>Calidad Fruta Ofertada</th>
-							<th>Monto Postulación</th>
+							<th class="p-3 mb-2 bg-primary text-white">Productores&nbsp;&nbsp;<i
+									class="fa fa-users"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Calidad Fruta Ofertada&nbsp;&nbsp;<i
+									class="fa fa-thumbs-down"></i>&nbsp;&nbsp;<i
+									class="fa fa-thumbs-up"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Monto Postulación&nbsp;&nbsp;<i
+									class="fa fa-gavel"></i></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="pedido : ${pedidoProductor}"
+						<tr class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:each="pedido : ${pedidoProductor}"
 							th:if="${pedido.estado} == Postulado and ${pedido.pedido.id} == *{id}">
 							<td th:text="${pedido.productor.nombre_productor}"></td>
 							<td th:text="${pedido.calidadFruta.calidad}"></td>
@@ -59,8 +69,10 @@
 			
 			<div>
 				<br>				
-				<button type="submit" class="btn btn-primary">Adjudicar</button>				
-				<a href="/adjudicacion" class="btn btn-danger">Cancelar</a>
+				<button type="submit" class="btn btn-success">Adjudicar&nbsp;&nbsp;<i
+									class="fa fa-gavel"></i></button>				
+				<a href="/adjudicacion" class="btn btn-danger">Cancelar&nbsp;&nbsp;<i
+				class="fa fa-times"></i></a>
 			</div>
 		</form>		
 	</div>

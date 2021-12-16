@@ -24,8 +24,9 @@
 	
 <link rel="stylesheet" href="css/styyle.css">
 
+<!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
 <link rel="icon" type="image/x-icon"
-	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+	href="../img/logo_sin_palabras.png" />
 
 <link href="https://fonts.googleapis.com/css?family=Varela+Round"
 	rel="stylesheet" />
@@ -43,12 +44,12 @@
 <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 
-<body background="../img/background.jpg">
+<body class="p-3 mb-2 bg-dark text-white">
 	<div class="table-responsive">
 
+		<h1 class="text-center"><img src="../img/logo_sin_palabras.png" width="80" class="my-4" ></h1>
 		<h1 class="text-center">Solicitar Pedido</h1>
-		<br>
-		<br>
+		<br> <br>
 		<hr>
 		<main>
 			<div class="col-12">
@@ -73,18 +74,22 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>Código</th>
-								<th>Nombre</th>
-								<th>Cantidad (*100 Kg.)</th>
-								<th>Quitar de lista</th>
+								<th class="p-3 mb-2 bg-primary text-white">Código</th>
+								<th class="p-3 mb-2 bg-primary text-white">Nombre</th>
+								<th class="p-3 mb-2 bg-primary text-white">Cantidad (*100 Kg.)</th>
+								<th class="p-3 mb-2 bg-primary text-white">Quitar de lista</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="producto, iterador : ${session.carrito}">
-								<td th:text="${producto.codigo}"></td>
-								<td th:text="${producto.nombre_producto}"></td>
-								<td th:text="${producto.cantidad}"></td>
-								<td>
+								<td class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:text="${producto.codigo}"></td>
+								<td class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:text="${producto.nombre_producto}"></td>
+								<td class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:text="${producto.cantidad}"></td>
+								<td class="alert alert-warning alert-dismissible fade show"
+									role="alert">
 									<form
 										th:action="@{/solicitar/quitarPedido/} + ${iterador.index}"
 										method="post">
@@ -116,24 +121,23 @@
 		</main>
 		<hr>
 
-		<div class="links">
-		<br>
-		<br>
-		<br>
-			<h3 class="text-center">Revisa la lista de Productos</h3>					
-			<ul>
-				<li data-view="list-view" class="li-list active"><i
-					class="fas fa-th-list"></i> Lista</li>
-				<li data-view="grid-view" class="li-grid"><i
-					class="fas fa-th-large"></i> Lista Cuadriculada</li>
+		<div class="links p-3 mb-2 bg-dark text-white">
+			<br> <br> <br>
+			<h3 class="text-center p-3 mb-2 bg-dark text-white">Revisa la
+				lista de Productos</h3>
+			<ul class="p-3 mb-2 bg-dark text-white">
+				<li data-view="grid-view" class="li-list active"><i
+					class="fas fa-th-large"></i> Ver Codigos</li>
 			</ul>
 		</div>
 
-		<div class="view_main">
-			<div class="view_wrap list-view" style="display: block;">
+
+		<div>
+
+			<div class="view_wrap grid-view " style="display: none;">
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/apple.png" alt="apple">
+						<img src="../img/manzana.png" alt="apple">
 					</div>
 					<div class="vi_right">
 						<p class="title">Manzana</p>
@@ -142,7 +146,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/banana.png" alt="banana">
+						<img src="../img/platano.png" alt="banana">
 					</div>
 					<div class="vi_right">
 						<p class="title">Platano</p>
@@ -151,7 +155,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/grapes.png" alt="grapes">
+						<img src="../img/uva.png" alt="grapes">
 					</div>
 					<div class="vi_right">
 						<p class="title">Uva</p>
@@ -160,7 +164,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/pineapple.png" alt="pineapple">
+						<img src="../img/piña.png" alt="pineapple">
 					</div>
 					<div class="vi_right">
 						<p class="title">Piña</p>
@@ -169,7 +173,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/strawberry.png" alt="strawberry">
+						<img src="../img/frutilla.png" alt="strawberry">
 					</div>
 					<div class="vi_right">
 						<p class="title">Frutilla</p>
@@ -178,7 +182,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/potato.png" alt="potato">
+						<img src="../img/papa.png" alt="potato">
 					</div>
 					<div class="vi_right">
 						<p class="title">Papas</p>
@@ -187,7 +191,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/tomato.png" alt="tomato">
+						<img src="../img/tomate.png" alt="tomato">
 					</div>
 					<div class="vi_right">
 						<p class="title">Tomate</p>
@@ -196,7 +200,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/chilli.png" alt="chilli">
+						<img src="../img/aji.png" alt="chilli">
 					</div>
 					<div class="vi_right">
 						<p class="title">Chile / Aji</p>
@@ -205,99 +209,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/carrot.png" alt="carrot">
-					</div>
-					<div class="vi_right">
-						<p class="title">Zanaoria</p>
-						<p class="title">Codigo: 9</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/onion.png" alt="onion">
-					</div>
-					<div class="vi_right">
-						<p class="title">Cebolla</p>
-						<p class="title">Codigo: 10</p>
-					</div>
-				</div>
-			</div>
-			<div class="view_wrap grid-view" style="display: none;">
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/apple.png" alt="apple">
-					</div>
-					<div class="vi_right">
-						<p class="title">Manzana</p>
-						<p class="title">Codigo: 1</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/banana.png" alt="banana">
-					</div>
-					<div class="vi_right">
-						<p class="title">Platano</p>
-						<p class="title">Codigo: 2</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/grapes.png" alt="grapes">
-					</div>
-					<div class="vi_right">
-						<p class="title">Uva</p>
-						<p class="title">Codigo: 3</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/pineapple.png" alt="pineapple">
-					</div>
-					<div class="vi_right">
-						<p class="title">Piña</p>
-						<p class="title">Codigo: 4</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/strawberry.png" alt="strawberry">
-					</div>
-					<div class="vi_right">
-						<p class="title">Frutilla</p>
-						<p class="title">Codigo: 5</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/potato.png" alt="potato">
-					</div>
-					<div class="vi_right">
-						<p class="title">Papas</p>
-						<p class="title">Codigo: 6</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/tomato.png" alt="tomato">
-					</div>
-					<div class="vi_right">
-						<p class="title">Tomate</p>
-						<p class="title">Codigo: 7</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/chilli.png" alt="chilli">
-					</div>
-					<div class="vi_right">
-						<p class="title">Chile / Aji</p>
-						<p class="title">Codigo: 8</p>
-					</div>
-				</div>
-				<div class="view_item">
-					<div class="vi_left">
-						<img src="../img/carrot.png" alt="carrot">
+						<img src="../img/zanahoria.png" alt="carrot">
 					</div>
 					<div class="vi_right">
 						<p class="title">Zanahoria</p>
@@ -306,7 +218,7 @@
 				</div>
 				<div class="view_item">
 					<div class="vi_left">
-						<img src="../img/onion.png" alt="onion">
+						<img src="../img/cebolla.png" alt="onion">
 					</div>
 					<div class="vi_right">
 						<p class="title">Cebolla</p>

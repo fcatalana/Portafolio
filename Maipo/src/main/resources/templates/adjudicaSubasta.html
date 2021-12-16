@@ -3,11 +3,11 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>Postulaciones Subasta</title>
 
 <!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
-<link rel="icon" type="image/x-icon"
-	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+<link rel="icon" type="image/x-icon" href="../img/logo_sin_palabras.png" />
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
 
 <style>
 #titulo, label {
@@ -17,10 +17,13 @@
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
 	<div class="container">
-		<br>
-		<h2>Postulaciones Subasta</h2>		
+		<h1 class="text-center">
+			<img src="../img/logo_sin_palabras.png" width="80" class="my-4">
+		</h1>
+		<h1 class="text-center">Postulaciones Subasta</h1>
+		<br>		
 		<form action="#" th:action="@{/updAdjudicaSubasta}" th:object="${pedido}"
 			method="post" class="row">
 			
@@ -28,12 +31,15 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>Transportista</th>
-							<th>Costo Traslado</th>
+							<th class="p-3 mb-2 bg-primary text-white">Transportista&nbsp;&nbsp;<i
+				class="fa fa-truck"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Costo Traslado&nbsp;&nbsp;<i
+				class="fa fa-credit-card"></i></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="subasta : ${subastaTransporte}"
+						<tr class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:each="subasta : ${subastaTransporte}"
 							th:if="${subasta.pedidoProductor.pedido.id} == *{id} and ${subasta.estado} == 'Postulado'">
 							<td th:text="${subasta.transporte.nombre_transporte}"></td>	
 							<td th:text="${subasta.monto}"></td>						
@@ -57,8 +63,10 @@
 			
 			<div>
 				<br>				
-				<button type="submit" class="btn btn-primary">Adjudicar</button>
-				<a href="/adjudicacionTransporte" class="btn btn-danger">Cancelar</a>
+				<button type="submit" class="btn btn-success">Adjudicar&nbsp;&nbsp;<i
+				class="fa fa-check"></i></button>
+				<a href="/adjudicacionTransporte" class="btn btn-danger">Cancelar&nbsp;&nbsp;<i
+				class="fa fa-times"></i></a>
 			</div>	
 		</form>	
 	</div>

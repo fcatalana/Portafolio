@@ -3,11 +3,11 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>Detalle de Pedidos</title>
 
 <!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
 <link rel="icon" type="image/x-icon"
-	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+	href="../img/logo_sin_palabras.png" />
 
 <style>
 #titulo, label {
@@ -16,11 +16,15 @@
 </style>
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
-</head>
-<body>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<body class="p-3 mb-2 bg-dark text-white">
 	<div class="container">
 		<br>
-		<h2>Detalle Solicitud Pedido</h2>
+		<h1 class="text-center"><img src="../img/logo_sin_palabras.png" width="80" class="my-4" ></h1>
+		<h1 class="text-center">Detalle de Pedidos</h1>
+		<br>
 		<form action="#" th:action="@{/updPedido}" th:object="${pedido}"
 			method="post" class="row">
 
@@ -28,13 +32,14 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>Cliente</th>
-							<th>Fecha Solicitud</th>
-							<th>Productos Solicitados</th>
+							<th class="p-3 mb-2 bg-primary text-white">Cliente&nbsp;<i class="fa fa-users"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Fecha&nbsp;<i class="fa fa-calendar"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Productos&nbsp;<i class="fa fa-shopping-cart"></i></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="pedido : ${pedidos}"
+						<tr class="alert alert-warning alert-dismissible fade show"
+									role="alert"  th:each="pedido : ${pedidos}"
 							th:if="${pedido.fechaYHora} == *{fechaYHora}">
 							<td th:text="${pedido.cliente.nombre_cliente}"></td>
 							<td th:text="${pedido.fechaYHora}"></td>
@@ -42,8 +47,8 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>Nombre</th>
-											<th>Cantidad Solicitada (*100 Kg.)</th>
+										<th class="p-3 mb-2 bg-success text-white">Nombre</th>
+											<th class="p-3 mb-2 bg-success text-white">Cantidad Solicitada</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -68,11 +73,10 @@
 				name="cliente">
 			<div>
 				<br>
-				<button type="submit" class="btn btn-primary">Publicar</button>
-				<a href="/pedidos" class="btn btn-danger">Cancelar</a>
+				<button type="submit" class="btn btn-primary">Publicar&nbsp;<i class="fa fa-check"></i></button>
+				<a href="/pedidos" class="btn btn-danger">Cancelar&nbsp;<i class="fa fa-times"></i></a>
 			</div>
 		</form>
 	</div>
-
 </body>
 </html>

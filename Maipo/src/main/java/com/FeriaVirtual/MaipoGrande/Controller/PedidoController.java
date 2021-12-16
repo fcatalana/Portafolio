@@ -110,10 +110,10 @@ public class PedidoController {
 		//if (result.hasErrors()) {
 			//return "actualizaPedido";
 		//}
-		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Pedido Adjudicado", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Pedido ya cuenta con un productor para el abastecimiento de los productos solicitados. Queda esperar la subasta del Transporte, para realizar el envío de los productos. Nos comunicaremos con usted a la brevedad."
+		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Pedido Adjudicado", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Pedido ya cuenta con un productor para el abastecimiento de los productos solicitados. Queda esperar la subasta del Transporte, para realizar el envío de los productos. Nos comunicaremos con usted a la brevedad."
 				+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 		
-		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Postulación Adjudicada", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Postulación de Pedido ha sido seleccionada para uno de nuestros clientes. Queda esperar la subasta del Transporte, para realizar el retiro y envío de los productos. Nos comunicaremos con usted a la brevedad."
+		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Postulación Adjudicada", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Postulación de Pedido ha sido seleccionada para uno de nuestros clientes. Queda esperar la subasta del Transporte, para realizar el retiro y envío de los productos. Nos comunicaremos con usted a la brevedad."
 		+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 		pedidoServiceAPI.save(pedido);
 		redirectAttrs
@@ -149,13 +149,13 @@ public class PedidoController {
 		//if (result.hasErrors()) {
 			//return "actualizaPedido";
 		//}
-		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Transporte Adjudicado", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Pedido ya cuenta con Transporte para el retiro y entrega de los productos solicitados. En un plazo de 30 días habiles recibira su pedido."
+		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Transporte Adjudicado", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Pedido ya cuenta con Transporte para el retiro y entrega de los productos solicitados. En un plazo de 30 días habiles recibira su pedido."
 				+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 		
-		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Retiro Productos", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Sus productos ya cuentan con transporte para el retiro y envío al cliente. El transportista se contactara con usted para el retiro de los productos."
+		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Retiro Productos", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Sus productos ya cuentan con transporte para el retiro y envío al cliente. El transportista se contactara con usted para el retiro de los productos."
 				+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 				
-		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Subasta Adjudicada", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Postulación de Subasta ha sido seleccionada para una de nuestras entregas. Contactese con el productor, quien ya sabe de esta resolución."
+		sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Subasta Adjudicada", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Postulación de Subasta ha sido seleccionada para una de nuestras entregas. Contactese con el productor, quien ya sabe de esta resolución."
 		+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 		pedidoServiceAPI.save(pedido);
 		redirectAttrs

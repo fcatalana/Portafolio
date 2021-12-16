@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="master">
-
+<title>Pedidos que Puedes Postular</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,38 +14,55 @@
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/fa.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
+<!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
+<link rel="icon" type="image/x-icon" href="../img/logo_sin_palabras.png" />
 
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
+
 	<main layout:fragment="contenido">
 		<div class="col-12">
-			<h2>Pedidos Adjudicados</h2>
-			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+			<div class="col-12">
+				<br>
+				<h1 class="text-center">
+					<img src="../img/logo_sin_palabras.png" width="80" class="my-4">
+				</h1>
+				<h1 class="text-center">Pedidos Adjudicados</h1>
+				<br> <br>
+				<div
+					th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+					th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+				</div>
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="p-3 mb-2 bg-primary text-white"></th>
+								<th class="p-3 mb-2 bg-primary text-white">Código&nbsp;<i
+									class="fa fa-barcode"></i></th>
+								<th class="p-3 mb-2 bg-primary text-white">Cliente&nbsp;<i
+									class="fa fa-users"></i></th>
+								<th class="p-3 mb-2 bg-primary text-white">Fecha Solicitud&nbsp;<i class="fa fa-calendar"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="productor : ${pedidoProductor}"
+								th:if="*{productor.pedido.estadoPedido.id_estado} == '2' and *{productor.estado} == 'Adjudicado'">
+								<td><a
+									th:href="@{/verSubasta/{id}(id=${productor.pedido.id})}"
+									class="btn btn-success">Ver</a></td>
+								<td class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:text="${productor.pedido.id}"></td>
+								<td class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:text="${productor.pedido.cliente.nombre_cliente}"></td>
+								<td class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:text="${productor.pedido.fechaYHora}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<a href="/" class="btn btn-danger">Cancelar&nbsp;<i
+				class="fa fa-times"></i></a>
 			</div>
-			<div class="table-responsive">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Código</th>
-							<th>Cliente</th>
-							<th>Fecha Solicitud</th>							
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="productor : ${pedidoProductor}"
-							th:if="*{productor.pedido.estadoPedido.id_estado} == '2' and *{productor.estado} == 'Adjudicado'">
-							<td><a th:href="@{/verSubasta/{id}(id=${productor.pedido.id})}" 
-							class="btn btn-success">Ver</a></td>															
-							<td th:text="${productor.pedido.id}"></td>
-							<td th:text="${productor.pedido.cliente.nombre_cliente}"></td>
-							<td th:text="${productor.pedido.fechaYHora}"></td>							
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<a href="/" class="btn btn-danger">Cancelar</a>
-		</div>
 	</main>
 </body>
 </html>

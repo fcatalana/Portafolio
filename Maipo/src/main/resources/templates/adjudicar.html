@@ -2,23 +2,30 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="master">
-
+<title>Adjudicaciones Pendientes</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description"
 	content="Punto de venta con Spring Boot. Control de inventario y ventas ">
 <meta name="author" content="Parzibyte">
-<title>Sistema de ventas Spring Boot</title>
+<!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
+<link rel="icon" type="image/x-icon" href="../img/logo_sin_palabras.png" />
 <!-- Cargar el CSS de Boostrap-->
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/fa.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
-
-<body>
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<body class="p-5 mb-2 bg-dark text-white">
 	<main layout:fragment="contenido">
 		<div class="col-12">
-			<h2>Adjudicaciones Pendientes</h2>
+			<br>
+			<h1 class="text-center">
+				<img src="../img/logo_sin_palabras.png" width="80" class="my-4">
+			</h1>
+			<h1 class="text-center">Adjudicaciones Pendientes</h1>
+			<br> <br>
 			<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
 			</div>
@@ -26,25 +33,27 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th></th>
-							<th>Cliente</th>
-							<th>Fecha Solicitud</th>
-							<th>Productos Solicitados</th>
+							<th class="p-3 mb-2 bg-primary text-white"></th>
+							<th class="p-3 mb-2 bg-primary text-white">Cliente&nbsp;<i
+									class="fa fa-user"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Fecha Solicitud&nbsp;<i class="fa fa-calendar"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Productos Solicitados&nbsp;<i class="fa fa-shopping-cart"></i></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="pedido : ${pedidos}"
+						<tr class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:each="pedido : ${pedidos}"
 							th:if="*{pedido.estadoPedido.id_estado} == '3'">
 							<td><a th:href="@{/adjudicaProductor/{id}(id=${pedido.id})}"
-							class="btn btn-success">Ver</a></td>
+								class="btn btn-success">Ver</a></td>
 							<td th:text="${pedido.cliente.nombre_cliente}"></td>
-							<td th:text="${pedido.fechaYHora}"></td>							
+							<td th:text="${pedido.fechaYHora}"></td>
 							<td>
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>Nombre</th>
-											<th>Cantidad Solicitada (*100 Kg.)</th>
+											<th class="p-3 mb-2 bg-success text-white">Nombre</th>
+											<th class="p-3 mb-2 bg-success text-white" >Cantidad Solicitada (*100 Kg.)</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -59,7 +68,8 @@
 					</tbody>
 				</table>
 			</div>
-			<a href="/" class="btn btn-danger">Cancelar</a>
+			<a href="/" class="btn btn-danger">Cancelar&nbsp;<i
+				class="fa fa-times"></i></a>
 		</div>
 	</main>
 </body>

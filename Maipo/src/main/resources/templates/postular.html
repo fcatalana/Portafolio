@@ -3,11 +3,14 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>Pedido Productor</title>
 
 <!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
-<link rel="icon" type="image/x-icon"
-	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+<link rel="icon" type="image/x-icon" href="../img/logo_sin_palabras.png" />
+<!-- Cargar el CSS de Boostrap-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 
 <style>
 #titulo {
@@ -17,29 +20,32 @@
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
 	<div class="container">
 		<br>
-		<h3 class="text-center">Postulación Productor</h3>
-		<hr>
-		<br>
+		<h1 class="text-center">
+			<img src="../img/logo_sin_palabras.png" width="80" class="my-4">
+		</h1>
+		<h1 class="text-center">Postulación del pedido por el Productor</h1>
+		<br> 
 		<div class="table-responsive">
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>Cliente</th>
-						<th>Productos Solicitados</th>
+						<th class="p-3 mb-2 bg-primary text-white">Cliente&nbsp;<i class="fa fa-users"></i></th>
+						<th class="p-3 mb-2 bg-primary text-white">Productos Solicitados&nbsp;<i class="fa fa-shopping-cart"></i></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="pedido : ${pedidos}" th:if="*{pedido.id} == *{id}">
+					<tr class="alert alert-warning alert-dismissible fade show"
+									role="alert"  th:each="pedido : ${pedidos}" th:if="*{pedido.id} == *{id}">
 						<td th:text="${pedido.cliente.nombre_cliente}"></td>
 						<td>
 							<table class="table table-bordered">
 								<thead>
 									<tr>
-										<th>Nombre</th>
-										<th>Cantidad Solicitada (*100 Kg.)</th>
+										<th class="p-3 mb-2 bg-success text-white">Nombre</th>
+										<th class="p-3 mb-2 bg-success text-white">Cantidad Solicitada (*100 Kg.)</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -153,33 +159,31 @@
 </body>
 
 <script>
-		
-		var resume_table = document.getElementById("rwd-table-id");
-		
-		for (var i = 0, row; row = resume_table.rows[i]; i++) {
-  			//alert(cell[i].innerText);
-  			for (var j = 0, col; col = row.cells[j]; j++) {
-    			//alert(col[j].innerText);
-    			var resume=(`${col.innerText}`);
-  			}
-		}
-		
-		$('#productor').val(resume);
-		
-		var resume_table1 = document.getElementById("rwd1-table1-id");
-		
-		for (var i = 0, row; row = resume_table1.rows[i]; i++) {
-  			//alert(cell[i].innerText);
-  			for (var j = 0, col; col = row.cells[j]; j++) {
-    			//alert(col[j].innerText);
-    			var resume1=(`${col.innerText}`);
-  			}
-		}
-		
-		$('#usuario').val(resume1);
-						
-		var resume2 = $('#asignarId').val();  		
-		$('#pedido').val(resume2);
+	var resume_table = document.getElementById("rwd-table-id");
 
+	for (var i = 0, row; row = resume_table.rows[i]; i++) {
+		//alert(cell[i].innerText);
+		for (var j = 0, col; col = row.cells[j]; j++) {
+			//alert(col[j].innerText);
+			var resume = (`${col.innerText}`);
+		}
+	}
+
+	$('#productor').val(resume);
+
+	var resume_table1 = document.getElementById("rwd1-table1-id");
+
+	for (var i = 0, row; row = resume_table1.rows[i]; i++) {
+		//alert(cell[i].innerText);
+		for (var j = 0, col; col = row.cells[j]; j++) {
+			//alert(col[j].innerText);
+			var resume1 = (`${col.innerText}`);
+		}
+	}
+
+	$('#usuario').val(resume1);
+
+	var resume2 = $('#asignarId').val();
+	$('#pedido').val(resume2);
 </script>
 </html>

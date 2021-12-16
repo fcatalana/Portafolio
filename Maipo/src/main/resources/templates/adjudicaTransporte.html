@@ -3,11 +3,11 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Clientes</title>
+<title>Subastas Pendientes</title>
 
 <!-- AGREGAR ICONO DE LA MANZANA EN LA PAGINA-->
-<link rel="icon" type="image/x-icon"
-	href="https://icons.iconarchive.com/icons/mad-science/yellow-submarine/32/APPLE-icon.png" />
+<link rel="icon" type="image/x-icon" href="../img/logo_sin_palabras.png" />
+<link th:href="@{/css/fa.min.css}" rel="stylesheet">
 
 <style>
 #titulo, label {
@@ -17,10 +17,13 @@
 <link href="../static/css/bootstrap.css" rel="stylesheet"
 	th:href="@{/css/bootstrap.css}">
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
 	<div class="container">
+		<h1 class="text-center">
+			<img src="../img/logo_sin_palabras.png" width="80" class="my-4">
+		</h1>
+		<h1 class="text-center">Subastas Pendientes</h1>
 		<br>
-		<h2>Subastas Pendientes</h2>
 		<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 				th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
 			</div>
@@ -28,14 +31,18 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th></th>
-							<th>Cliente / Entrega Productos</th>
-							<th>Productor / Retiro Productos</th>
-							<th>Productos a Entregar</th>
+							<th class="p-3 mb-2 bg-primary text-white"></th>
+							<th class="p-3 mb-2 bg-primary text-white">Cliente / Entrega Productos&nbsp;&nbsp;<i
+				class="fa fa-users"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Productor / Retiro Productos&nbsp;&nbsp;<i
+				class="fa fa-archive"></i></th>
+							<th class="p-3 mb-2 bg-primary text-white">Productos a Entregar&nbsp;&nbsp;<i
+				class="fa fa-truck"></i></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="pedido : ${pedidoProductor}"
+						<tr class="alert alert-warning alert-dismissible fade show"
+									role="alert" th:each="pedido : ${pedidoProductor}"
 							th:if="*{pedido.pedido.estadoPedido.id_estado} == '4' and *{pedido.estado} == 'Adjudicado'">
 							<td><a th:href="@{/adjudicaTransporte/{id}(id=${pedido.pedido.id})}"
 							class="btn btn-success">Ver</a></td>
@@ -47,8 +54,8 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>Nombre</th>
-											<th>Cantidad Solicitada (*100 Kg.)</th>
+											<th class="p-3 mb-2 bg-success text-white">Nombre</th>
+											<th class="p-3 mb-2 bg-success text-white">Cantidad Solicitada (*100 Kg.)</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -63,7 +70,8 @@
 					</tbody>
 				</table>
 			</div>
-			<a href="/" class="btn btn-danger">Cancelar</a>
+			<a href="/" class="btn btn-danger">Cancelar&nbsp;&nbsp;<i
+				class="fa fa-times"></i></a>
 	</div>
 </body>
 </html>

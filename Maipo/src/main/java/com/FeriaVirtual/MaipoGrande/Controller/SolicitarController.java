@@ -91,8 +91,8 @@ public class SolicitarController {
 	            pedidosSolicitadosRepository.save(productoSolicitado);
 	        }
 	        //enviamos la notificación
-	        sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Solicitud de Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su pedido ha sido ingresado al Sistema exitosamente, Ahora, se realizara la publicación de este. Le mantendremos informado su avance."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
-	        sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Solicitud de Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Se ha ingresado una solicitud de Pedido al Sistema, revise su bandeja de Pedidos para publicar dicha petición."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
+	        sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Solicitud de Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su pedido ha sido ingresado al Sistema exitosamente, Ahora, se realizara la publicación de este. Le mantendremos informado su avance."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
+	        sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Solicitud de Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Se ha ingresado una solicitud de Pedido al Sistema, revise su bandeja de Pedidos para publicar dicha petición."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 	        // Al final limpiamos el carrito
 	        this.limpiarCarrito(request);
 	        // e indicamos una venta exitosa

@@ -152,7 +152,7 @@ public class PostularController {
 	       // if (result.hasErrors()) {
 	       //    return "postular";
 	       // }
-		 sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Postulación Subasta", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Postulación de Subasta se ha ingresado exitosamente. Si resulta adjudicado, nos contactaremos con usted."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
+		 sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Postulación Subasta", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Postulación de Subasta se ha ingresado exitosamente. Si resulta adjudicado, nos contactaremos con usted."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 		 subastaTransporteRepository.save(subastaTransporte);
 	        return "redirect:/";
 	    }
@@ -193,7 +193,7 @@ public class PostularController {
 				return "entregar";
 			}
 			
-			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Pedido Entregado", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Pedido a sido entregado, favor indique la recepción de los productos para continuar con el proceso."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");						
+			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Pedido Entregado", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Su Pedido a sido entregado, favor indique la recepción de los productos para continuar con el proceso."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");						
 			
 			pedidoServiceAPI.save(pedido);
 			redirectAttrs
@@ -239,13 +239,13 @@ public class PostularController {
 				return "recepcionar";
 			}
 			
-			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Recepción Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Un Pedido a sido entregado y recepcionado exitosamente. Revise el detalle de la venta en la sección de informes."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
+			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Recepción Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Un Pedido a sido entregado y recepcionado exitosamente. Revise el detalle de la venta en la sección de informes."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 			
-			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Venta Generada", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Con la aceptación de los productos, se ha generado los cobros asociados. Se le enviara un resumen de estos a su correo, ademas se esperara en un plazo de 15 días el abono del total. Favor cumpla los plazos de pagos para no incurrir en multas."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
+			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Venta Generada", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Con la aceptación de los productos, se ha generado los cobros asociados. Se le enviara un resumen de estos a su correo, ademas se esperara en un plazo de 15 días el abono del total. Favor cumpla los plazos de pagos para no incurrir en multas."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 			
-			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Recepción Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Un pedido ha sido recepcionado exitosamente por uno de nuestros clientes. Dentro de un plazo de 20 días se le enviara resumen de ganancias y recibira el abono de su pago."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
+			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Recepción Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Un pedido ha sido recepcionado exitosamente por uno de nuestros clientes. Dentro de un plazo de 20 días se le enviara resumen de ganancias y recibira el abono de su pago."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 			
-			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="f.catalana@duocuc.cl", subject="Recepción Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Sus productos han sido recepcionados exitosamente por uno de nuestros clientes. Dentro de un plazo de 20 días se le enviara resumen de ganancias y recibira el abono de su pago."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
+			sendMailService.sendMail(from="maipo.grande123@gmail.com", to="cris.silvac@duocuc.cl", subject="Recepción Pedido", body="Maipo Grande, le informa lo siguiente:"+"\n"+"\n"+"Sus productos han sido recepcionados exitosamente por uno de nuestros clientes. Dentro de un plazo de 20 días se le enviara resumen de ganancias y recibira el abono de su pago."+"\n"+"\n"+"\n"+"Atte."+"\n"+"Maipo Grande");
 			
 			pedidoServiceAPI.save(pedido);
 			redirectAttrs
